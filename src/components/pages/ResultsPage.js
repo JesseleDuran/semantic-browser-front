@@ -3,6 +3,7 @@ import SearchForm from "../organisms/SearchForm";
 import Grid from "@material-ui/core/Grid";
 import PrincipalAppBar from "../molecules/PrincipalAppBar";
 import ResultList from "../organisms/ResultList";
+import ResultListImage from "../organisms/ResultListImage";
 import NavTab from "../molecules/NavTab";
 import Pagination from "../organisms/Pagination";
 import SearchFormResults from "../organisms/SearchFormResults";
@@ -32,7 +33,7 @@ class ResultsPage extends Component {
 
 	render = () => {
 		const { query, results, search, onChange, tab, onTabChange } = this.props;
-
+		console.log(results)
 		return (
 			<div>
 				<PrincipalAppBar />,
@@ -40,7 +41,7 @@ class ResultsPage extends Component {
 				<NavTab value={tab} onChange={onTabChange} />
 				<ViewPager page={tab}>
 					{results && <ResultList items={results.items} />}
-					<h1>IMAGENES</h1>
+					{/* {results && <ResultListImage items={results.items} />}*/}
 					<h1>VIDEOS</h1>
 				</ViewPager>
 				<Pagination

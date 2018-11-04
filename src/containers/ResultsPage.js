@@ -7,8 +7,7 @@ import { replaceAll } from "../utils/functions";
 
 const typeMap = {
 	0: null,
-	1: "image",
-	2: "video"
+	1: "image"
 };
 
 class ResultsPageContainer extends Component {
@@ -40,7 +39,7 @@ class ResultsPageContainer extends Component {
 	};
 
 	onSearch = feelingLucky => {
-		const { query, searchType } = this.state;
+		/*const { query, searchType } = this.state;
 		search({
 			q: this.formatQueryIfNeeded(query),
 			searchType
@@ -51,7 +50,7 @@ class ResultsPageContainer extends Component {
 			})
 			.catch(err => {
 				console.log("HEY", err);
-			});
+			});*/
 	};
 
 	componentWillMount() {
