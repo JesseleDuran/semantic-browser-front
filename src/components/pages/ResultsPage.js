@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import SearchForm from "../organisms/SearchForm";
 import Grid from "@material-ui/core/Grid";
-import PrincipalAppBar from "../molecules/PrincipalAppBar"
+import PrincipalAppBar from "../molecules/PrincipalAppBar";
 import ResultList from "../organisms/ResultList";
 import NavTab from "../molecules/NavTab";
 import Pagination from "../organisms/Pagination";
 import SearchFormResults from "../organisms/SearchFormResults";
+import ViewPager from "../molecules/ViewPager";
 
 class ResultsPage extends Component {
 	constructor() {
@@ -30,13 +31,18 @@ class ResultsPage extends Component {
 	}
 
 	render = () => {
-		const { query, results, search, onChange } = this.props;
+		const { query, results, search, onChange, tab, onTabChange } = this.props;
+
 		return (
 			<div>
-				<PrincipalAppBar></PrincipalAppBar>,
-				<SearchFormResults onChange={this.onSearchChange} search={this.onSearch} />
-				<NavTab />
-				<ResultList items={results} />
+				<PrincipalAppBar />,
+				<SearchFormResults onChange={onChange} search={search} value={query} />
+				<NavTab value={tab} onChange={onTabChange} />
+				<ViewPager page={tab}>
+					{results && <ResultList items={results.items} />}
+					<h1>IMAGENES</h1>
+					<h1>VIDEOS</h1>
+				</ViewPager>
 				<Pagination
 					items={this.state.exampleItems}
 					onChangePage={this.onChangePage}

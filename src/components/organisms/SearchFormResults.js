@@ -11,36 +11,44 @@ import GreenLetter from "../atoms/GreenLetter";
 
 const styles = theme => ({
 	base: {
-        width: "70%",
-        paddingLeft: "15px"
-    },
-    firstLetter: {
-        paddingLeft: "15px"
+		width: "70%",
+		paddingLeft: "15px"
+	},
+	firstLetter: {
+		paddingLeft: "15px"
 	}
 });
 
 class SearchFormResults extends Component {
 	render = () => {
-		const { onChange, search, classes} = this.props;
+		const { onChange, search, classes, value } = this.props;
 		return (
 			<div>
-				<Grid container
-                    direction="row"
-                    justify="flex-start"
-                    alignItems="center"
-                >
-                    <BlueLetter className={classes.firstLetter} size={"2vw"}>{"G"}</BlueLetter>
-                    <RedLetter size={"2vw"}>{"o"}</RedLetter>
-                    <YellowLetter size={"2vw"}>{"o"}</YellowLetter>
-                    <BlueLetter size={"2vw"}>{"g"}</BlueLetter>
-                    <GreenLetter size={"2vw"}>{"l"}</GreenLetter>
-                    <RedLetter size={"2vw"}>{"e"}</RedLetter>
-                    <YellowLetter size={"2vw"}>{" I"}</YellowLetter>
-                    <BlueLetter size={"2vw"}>{"T"}</BlueLetter>
-                    <Grid item className={classes.base}>
-					    <SearchInput justify="flex-start" onChange={onChange} onEnter={search} />
-                    </Grid>
-				</Grid>	
+				<Grid
+					container
+					direction="row"
+					justify="flex-start"
+					alignItems="center"
+				>
+					<BlueLetter className={classes.firstLetter} size={"2vw"}>
+						{"G"}
+					</BlueLetter>
+					<RedLetter size={"2vw"}>{"o"}</RedLetter>
+					<YellowLetter size={"2vw"}>{"o"}</YellowLetter>
+					<BlueLetter size={"2vw"}>{"g"}</BlueLetter>
+					<GreenLetter size={"2vw"}>{"l"}</GreenLetter>
+					<RedLetter size={"2vw"}>{"e"}</RedLetter>
+					<YellowLetter size={"2vw"}>{" I"}</YellowLetter>
+					<BlueLetter size={"2vw"}>{"T"}</BlueLetter>
+					<Grid item className={classes.base}>
+						<SearchInput
+							justify="flex-start"
+							onChange={onChange}
+							onEnter={search}
+							value={value}
+						/>
+					</Grid>
+				</Grid>
 			</div>
 		);
 	};

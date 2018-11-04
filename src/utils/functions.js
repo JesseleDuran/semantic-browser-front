@@ -9,3 +9,7 @@ export const removeKeys = (obj, keysToRemove) => {
 	keys.forEach(key => (resultObj[key] = obj[key]));
 	return resultObj;
 };
+
+export const replaceAll = (str, find, replace) => {
+	return str.replace(new RegExp(find, "g"), replace);
+};

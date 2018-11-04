@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import PrincipalAppBar from "../molecules/PrincipalAppBar"
+import PrincipalAppBar from "../molecules/PrincipalAppBar";
 
 const styles = theme => ({
 	parent: {
@@ -12,7 +12,7 @@ const styles = theme => ({
 		justifyContent: "center",
 		alignItems: "center",
 		height: "auto",
-		minHeight: "600px",
+		minHeight: "600px"
 	}
 });
 
@@ -32,12 +32,26 @@ class HomePage extends React.Component {
 		});
 	};
 
+	onLucky = () => {
+		const { query } = this.state;
+		this.props.history.push({
+			pathname: "/search",
+			search: `query=${query}`,
+			feelingLucky: true,
+			query
+		});
+	};
+
 	render() {
 		const { isLoggedIn, classes } = this.props;
 		return [
-			<PrincipalAppBar></PrincipalAppBar>,
-			<div className={classes.parent} >
-				<SearchForm onChange={this.onSearchChange} search={this.onSearch} />
+			<PrincipalAppBar />,
+			<div className={classes.parent}>
+				<SearchForm
+					onChange={this.onSearchChange}
+					search={this.onSearch}
+					onLucky={this.onLucky}
+				/>
 			</div>,
 			<Button href="/login" disabled={isLoggedIn}>
 				Loguearse

@@ -9,7 +9,7 @@ import GreenLetter from "../atoms/GreenLetter";
 
 class SearchForm extends Component {
 	render = () => {
-		const { onChange, search} = this.props;
+		const { onChange, search, onLucky } = this.props;
 		return (
 			<div>
 				<Grid container justify="center">
@@ -22,13 +22,13 @@ class SearchForm extends Component {
 					<YellowLetter size={"6vw"}>{" I"}</YellowLetter>
 					<BlueLetter size={"6vw"}>{"T"}</BlueLetter>
 					<SearchInput justify="center" onChange={onChange} onEnter={search} />
-						<Button variant="outlined" onClick={search}>
-							Buscar con Google
-						</Button>
-						<Button variant="outlined" onClick={search}>
-							Me siento con suerte
-						</Button>
-				</Grid>	
+					<Button variant="outlined" onClick={search}>
+						Buscar con Google
+					</Button>
+					<Button variant="outlined" onClick={onLucky}>
+						Me siento con suerte
+					</Button>
+				</Grid>
 			</div>
 		);
 	};

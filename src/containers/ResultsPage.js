@@ -2,77 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ResultsPage from "../components/pages/ResultsPage";
 import { withRouter } from "react-router-dom";
+import { search } from "../api/googleAPI";
+import { replaceAll } from "../utils/functions";
 
-const data = [
-	{
-		kind: "customsearch#result",
-		title: "Essentials of the Java Programming Language, Part 1",
-		htmlTitle: "Essentials of the <b>Java Programming</b> Language, Part 1",
-		link: "https://www.oracle.com/technetwork/java/index-138747.html",
-		displayLink: "www.oracle.com",
-		snippet:
-			"If you are new to programming in the Java language, have some experience with \nother languages, and are familiar with things like displaying text or graphics or ...",
-		htmlSnippet:
-			"If you are new to <b>programming</b> in the <b>Java</b> language, have some experience with <br>\nother languages, and are familiar with things like displaying text or graphics or&nbsp;...",
-		cacheId: "G7u1tM1EFegJ",
-		formattedUrl: "https://www.oracle.com/technetwork/java/index-138747.html",
-		htmlFormattedUrl:
-			"https://www.oracle.com/technetwork/<b>java</b>/index-138747.html",
-		pagemap: {
-			metatags: [
-				{
-					title: "Essentials of the Java Programming Language, Part 1",
-					country: "USA",
-					language: "en",
-					"updated date": "8/26/13 4:47 PM"
-				}
-			]
-		}
-	},
-	{
-		kind: "customsearch#result",
-		title: "Java (programming language) - Wikipedia",
-		htmlTitle: "<b>Java</b> (<b>programming</b> language) - Wikipedia",
-		link: "https://en.wikipedia.org/wiki/Java_(programming_language)",
-		displayLink: "en.wikipedia.org",
-		snippet:
-			"Java is a general-purpose computer-programming language that is concurrent, \nclass-based, object-oriented, and specifically designed to have as few ...",
-		htmlSnippet:
-			"<b>Java</b> is a general-purpose computer-<b>programming</b> language that is concurrent, <br>\nclass-based, object-oriented, and specifically designed to have as few&nbsp;...",
-		cacheId: "ty8cA0ylPEMJ",
-		formattedUrl: "https://en.wikipedia.org/wiki/Java_(programming_language)",
-		htmlFormattedUrl:
-			"https://en.wikipedia.org/wiki/<b>Java</b>_(<b>programming</b>_language)",
-		pagemap: {
-			cse_thumbnail: [
-				{
-					width: "166",
-					height: "304",
-					src:
-						"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTTkd-KfsXtxIbwamVrMSuOjYm8ZFHt05veHuXwVV4RF9aF0Yc3FJeFpQw"
-				}
-			],
-			metatags: [
-				{
-					referrer: "origin",
-					"og:image":
-						"https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
-				}
-			],
-			cse_image: [
-				{
-					src:
-						"https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
-				}
-			]
-		}
-	}
-];
+const typeMap = {
+	0: null,
+	1: "image",
+	2: "video"
+};
 
 class ResultsPageContainer extends Component {
 	state = {
 		query: "",
-		results: []
+		searchType: null,
+		results: null,
+		tab: 0
 	};
 
 	getQuery = paramString => {
@@ -82,31 +26,53 @@ class ResultsPageContainer extends Component {
 
 	onQueryChange = query => this.setState({ query });
 
-	search = () => {
-		this.setState({ results: [] }, this.onSearch);
+	search = lucky => {
+		this.setState({ results: null }, () => this.onSearch(lucky));
 	};
 
-	onSearch = () => {
-		const { query } = this.state;
-		setTimeout(() => {
-			this.setState({ results: data });
-		}, 1500);
+	formatQueryIfNeeded = query => {
+		const formatedOrs = replaceAll(query, " o ", " OR ");
+		return replaceAll(formatedOrs, " y ", " AND ");
 	};
 
-	componentDidMount() {
+	goToFirstPage = items => {
+		window.location = items[0].link;
+	};
+
+	onSearch = feelingLucky => {
+		const { query, searchType } = this.state;
+		search({
+			q: this.formatQueryIfNeeded(query),
+			searchType
+		})
+			.then(results => {
+				if (feelingLucky) this.goToFirstPage(results.items);
+				this.setState({ results });
+			})
+			.catch(err => {
+				console.log("HEY", err);
+			});
+	};
+
+	componentWillMount() {
 		let {
-			location: { query },
+			location: { query, feelingLucky },
 			location
 		} = this.props;
-
 		query = query ? query : this.getQuery(location.search);
-		this.setState({ query }, this.search);
+		this.setState({ query }, () => this.search(feelingLucky));
 	}
 
+	tabChange = tab => {
+		this.setState({ tab, searchType: typeMap[tab] }, this.onSearch);
+	};
+
 	render = () => {
-		const { query, results } = this.state;
+		const { query, results, tab } = this.state;
 		return (
 			<ResultsPage
+				onTabChange={this.tabChange}
+				tab={tab}
 				query={query}
 				search={this.search}
 				results={results}
