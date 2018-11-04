@@ -21,9 +21,9 @@ class ResultListImage extends Component {
     render = () => {
         const { items } = this.props;
         return (
-            <div>
+            <Grid container spacing={8}>
                 {this.listItemsResult(items)}
-            </div>
+            </Grid>
         );
     };
 }

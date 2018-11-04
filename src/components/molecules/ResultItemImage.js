@@ -12,12 +12,12 @@ import IconButton from '@material-ui/core/IconButton';
 
 const styles = {
     card: {
-      maxWidth: 345,
+        maxWidth: 345,
     },
     media: {
-      height: 140,
+        objectFit: 'cover',
     },
-};
+  };
 
 class ResultItemImage extends Component {
 
@@ -25,8 +25,12 @@ class ResultItemImage extends Component {
         const { classes, thumbnailLink, title, contextLink } = this.props;
         return (
             <Card className={classes.card}>
+                <div>
                     <CardMedia
+                        component="img"
+                        alt={title}
                         className={classes.media}
+                        height="140"
                         image={thumbnailLink}
                         title={title}
                     />
@@ -35,13 +39,14 @@ class ResultItemImage extends Component {
                             {title}
                         </Typography>
                     </CardContent>
+                </div>   
                 <CardActions>
                     <Button size="small" color="primary" href={contextLink}>
                         Visitar
                     </Button>
-                    <IconButton color="inherit">
+                    <Button size="small">
                         <Favorite color="disabled" />
-                    </IconButton>
+                    </Button>
                 </CardActions>
             </Card>
         );
@@ -49,4 +54,5 @@ class ResultItemImage extends Component {
 }
 
 export default withRouter(withStyles(styles)(ResultItemImage));
+
 

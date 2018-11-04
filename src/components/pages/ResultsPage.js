@@ -41,7 +41,7 @@ class ResultsPage extends Component {
 				<NavTab value={tab} onChange={onTabChange} />
 				<ViewPager page={tab}>
 					{results && <ResultList items={results.items} />}
-					{/* {results && <ResultListImage items={results.items} />}*/}
+					{/* <ResultListImage items={data.items}/> */}
 					<h1>VIDEOS</h1>
 				</ViewPager>
 				<Pagination
