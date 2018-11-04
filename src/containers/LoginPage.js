@@ -8,7 +8,7 @@ class LoginPageContainer extends Component {
 	render() {
 		const { isLoggedIn } = this.props;
 		const location = this.props.location;
-		const path = _get(location, "state.from.pathname", "/home");
+		const path = _get(location, "state.from.pathname", "/");
 		return isLoggedIn ? <Redirect to={path} /> : this.props.login();
 	}
 }

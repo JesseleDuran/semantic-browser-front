@@ -20,9 +20,7 @@ class AuthCallback extends Component {
 		const { isLoggedIn, error } = this.props;
 		this.handleAuth();
 		const location = this.props.location;
-		const path = !error
-			? _get(location, "state.from.pathname", "/home")
-			: "/login";
+		const path = !error ? _get(location, "state.from.pathname", "/") : "/login";
 		return isLoggedIn ? <Redirect to={path} /> : <PageLoader active={true} />;
 	}
 }

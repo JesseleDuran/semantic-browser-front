@@ -22,10 +22,10 @@ class App extends Component {
 			<Router>
 				<React.Fragment>
 					<Switch>
-						<AuthRoute exact path="/home" component={HomePage} />
-						<Route exact path="/" component={LoginPage} />
+						<Route exact path="/" component={HomePage} />
+						<Route exact path="/login" component={LoginPage} />
 						<Route exact path="/callback" component={AuthCallback} />
-						<AuthRoute exact path="/search" component={ResultsPage} />
+						<Route exact path="/search" component={ResultsPage} />
 						<Route
 							path="/logout"
 							component={() => {

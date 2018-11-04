@@ -15,8 +15,8 @@ class HomePageContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-	corridors: state.corridors.items,
 	loading: state.UI.homePage.loading,
+	isLoggedIn: state.auth.isLoggedIn,
 	error: state.UI.homePage.error
 });
 

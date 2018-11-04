@@ -56,9 +56,15 @@ class HomePage extends React.Component {
 	};
 
 	render() {
+		const { isLoggedIn } = this.props;
 		return [
 			<SearchForm onChange={this.onSearchChange} search={this.onSearch} />,
-			<Button href="/logout">Logout</Button>
+			<Button href="/login" disabled={isLoggedIn}>
+				Loguearse
+			</Button>,
+			<Button href="/logout" disabled={!isLoggedIn}>
+				Logout
+			</Button>
 		];
 	}
 }
