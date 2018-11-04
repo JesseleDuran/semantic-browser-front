@@ -13,14 +13,14 @@ class SearchForm extends Component {
 		return (
 			<div>
 				<Grid container justify="center">
-					<BlueLetter size="7vw">{"G"}</BlueLetter>
-					<RedLetter size="7vw">{"o"}</RedLetter>
-					<YellowLetter size="7vw">{"o"}</YellowLetter>
-					<BlueLetter size="7vw">{"g"}</BlueLetter>
-					<GreenLetter size="7vw">{"l"}</GreenLetter>
-					<RedLetter size="7vw">{"e"}</RedLetter>
-					<YellowLetter size="7vw">{" I"}</YellowLetter>
-					<BlueLetter size="7vw">{"T"}</BlueLetter>
+					<BlueLetter size="6vw">{"G"}</BlueLetter>
+					<RedLetter size="6vw">{"o"}</RedLetter>
+					<YellowLetter size="6vw">{"o"}</YellowLetter>
+					<BlueLetter size="6vw">{"g"}</BlueLetter>
+					<GreenLetter size="6vw">{"l"}</GreenLetter>
+					<RedLetter size="6vw">{"e"}</RedLetter>
+					<YellowLetter size="6vw">{" I"}</YellowLetter>
+					<BlueLetter size="6vw">{"T"}</BlueLetter>
 				</Grid>
 				<SearchInput onChange={onChange} onEnter={search} />
 				<Button variant="outlined" onClick={search}>
