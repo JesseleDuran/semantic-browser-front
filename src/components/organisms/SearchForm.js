@@ -21,7 +21,7 @@ class SearchForm extends Component {
 					<RedLetter size={"6vw"}>{"e"}</RedLetter>
 					<YellowLetter size={"6vw"}>{" I"}</YellowLetter>
 					<BlueLetter size={"6vw"}>{"T"}</BlueLetter>
-					<SearchInput onChange={onChange} onEnter={search} />
+					<SearchInput justify="center" onChange={onChange} onEnter={search} />
 						<Button variant="outlined" onClick={search}>
 							Buscar con Google
 						</Button>

@@ -5,6 +5,7 @@ import PrincipalAppBar from "../molecules/PrincipalAppBar"
 import ResultList from "../organisms/ResultList";
 import NavTab from "../molecules/NavTab";
 import Pagination from "../organisms/Pagination";
+import SearchFormResults from "../organisms/SearchFormResults";
 
 class ResultsPage extends Component {
 	constructor() {
@@ -33,15 +34,7 @@ class ResultsPage extends Component {
 		return (
 			<div>
 				<PrincipalAppBar></PrincipalAppBar>,
-				<Grid container
-					direction="row"
-					justify="flex-start"
-					alignItems="flex-start"
-				>
-					<div>
-						<SearchForm onChange={this.onSearchChange} search={this.onSearch} />
-					</div>
-				</Grid>
+				<SearchFormResults onChange={this.onSearchChange} search={this.onSearch} />
 				<NavTab />
 				<ResultList items={results} />
 				<Pagination
