@@ -79,8 +79,9 @@ class PrincipalAppBar extends React.Component {
                 open={isMenuOpen}
                 onClose={this.handleMenuClose}
             >
-                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+                <MenuItem onClick={this.handleMenuClose}>Iniciar sesión</MenuItem>
+                <MenuItem onClick={this.handleMenuClose}>Mis favoritos</MenuItem>
+                <MenuItem onClick={this.handleMenuClose}>Cerrar sesión</MenuItem>
             </Menu>
         );
 
