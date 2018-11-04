@@ -6,6 +6,7 @@ const SearchInput = ({ onChange, onEnter, disabled = false, value }) => {
 	return (
 		<Grid container justify="center">
 			<TextInput
+				autoFocus
 				value={value}
 				onChange={evt => onChange(evt.target.value)}
 				onKeyPress={e => {
