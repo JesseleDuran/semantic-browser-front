@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { DotLoader } from "react-spinners";
 import Grid from "@material-ui/core/Grid";
-import translate from "utils/translate";
+
 const Container = styled.div`
 	position: fixed;
 	padding-left: 50%;

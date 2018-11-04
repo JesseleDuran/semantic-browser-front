@@ -1,5 +1,5 @@
 import * as constants from "./constants";
-import ErrorHandler from "ErrorHandler";
+import ErrorHandler from "../components/molecules/ErrorHandler";
 
 export const homePageLoading = loading => dispatch => {
 	dispatch({

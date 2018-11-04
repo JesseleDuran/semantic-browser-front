@@ -6,9 +6,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import App from "./containers/App";
 import theme from "./theme";
 import store from "./store";
-import { I18nextProvider } from "react-i18next";
-import i18n from "utils/i18n";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 injectGlobal`
 
@@ -58,9 +56,7 @@ injectGlobal`
 render(
 	<Provider store={store}>
 		<ThemeProvider theme={theme}>
-			<I18nextProvider i18n={i18n}>
-				<App />
-			</I18nextProvider>
+			<App />
 		</ThemeProvider>
 	</Provider>,
 	document.getElementById("root")

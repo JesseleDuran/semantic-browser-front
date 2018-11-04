@@ -1,5 +1,5 @@
 import React from "react";
-import Route from "containers/Route";
+import Route from "./Route";
 import { Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -16,6 +16,9 @@ const mapStateToProps = state => ({
 	isLoggedIn: state.auth.isLoggedIn
 });
 
-const container = compose(withRouter, connect(mapStateToProps));
+const container = compose(
+	withRouter,
+	connect(mapStateToProps)
+);
 
 export default container(AuthRoute);

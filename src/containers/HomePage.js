@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import HomePage from "HomePage";
-import { logout } from "actions/auth";
-import { showError } from "actions/UI";
+import HomePage from "../components/pages/HomePage";
+import { logout } from "../actions/auth";
+import { showError } from "../actions/UI";
 
 class HomePageContainer extends Component {
-
 	logout = () => {
 		this.props.logout();
 	};

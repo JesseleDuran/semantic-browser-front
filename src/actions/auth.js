@@ -1,6 +1,5 @@
 import * as constants from "./constants";
 import Auth0 from "../services/auth0";
-import config from "config";
 
 export const login = () => dispatch => {
 	const auth0 = new Auth0();

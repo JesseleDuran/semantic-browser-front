@@ -3,8 +3,8 @@ import _get from "lodash/get";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Auth0 from "../services/auth0";
-import { onLogin, loginFail } from "actions/auth";
-import PageLoader from "PageLoader";
+import { onLogin, loginFail } from "../actions/auth";
+import PageLoader from "../components/molecules/PageLoader";
 class AuthCallback extends Component {
 	handleAuth = () => {
 		if (!this.props.isLoggedIn) {
