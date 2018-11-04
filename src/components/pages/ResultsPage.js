@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import BrowserTitle from "../atoms/BrowserTitle";
-import SearchInput from "../molecules/SearchInput";
+import SearchForm from "../organisms/SearchForm";
 import Grid from "@material-ui/core/Grid";
-import FilledButton from "../atoms/FilledButton";
+import PrincipalAppBar from "../molecules/PrincipalAppBar"
 import ResultList from "../organisms/ResultList";
 import NavTab from "../molecules/NavTab";
 import Pagination from "../organisms/Pagination";
@@ -22,12 +21,10 @@ class ResultsPage extends Component {
 			pageOfItems: []
 		};
 
-		// bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
 		this.onChangePage = this.onChangePage.bind(this);
 	}
 
 	onChangePage(pageOfItems) {
-		// update state with new page of items
 		this.setState({ pageOfItems: pageOfItems });
 	}
 
@@ -35,12 +32,16 @@ class ResultsPage extends Component {
 		const { query, results, search, onChange } = this.props;
 		return (
 			<div>
-				<Grid container justify="center">
-					<BrowserTitle title={"Google IT"} />
+				<PrincipalAppBar></PrincipalAppBar>,
+				<Grid container
+					direction="row"
+					justify="flex-start"
+					alignItems="flex-start"
+				>
+					<div>
+						<SearchForm onChange={this.onSearchChange} search={this.onSearch} />
+					</div>
 				</Grid>
-				<SearchInput value={query} onEnter={search} onChange={onChange} />
-				<FilledButton onClick={search}>Buscar</FilledButton>
-
 				<NavTab />
 				<ResultList items={results} />
 				<Pagination

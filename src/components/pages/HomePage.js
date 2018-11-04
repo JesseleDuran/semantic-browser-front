@@ -3,7 +3,6 @@ import SearchForm from "../organisms/SearchForm";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import PrincipalAppBar from "../molecules/PrincipalAppBar"
 
