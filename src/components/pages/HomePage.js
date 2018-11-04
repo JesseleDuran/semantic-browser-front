@@ -7,35 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
-	root: {
-		flexGrow: 1
-	},
-	appFrame: {
-		height: "auto",
-		zIndex: 1,
-		overflow: "hidden",
-		position: "relative",
+	parent: {
 		display: "flex",
-		width: "100%"
-	},
-	hide: {
-		display: "none"
-	},
-	drawerHeader: {
-		display: "flex",
+		justifyContent: "center",
 		alignItems: "center",
-		justifyContent: "flex-end",
-		padding: "0 8px",
-		...theme.mixins.toolbar
-	},
-	content: {
-		flexGrow: 1,
-		backgroundColor: theme.palette.background.default,
-
-		transition: theme.transitions.create("margin", {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen
-		})
+		height: "auto",
+		minHeight: "300px",
 	}
 });
 
@@ -56,9 +33,11 @@ class HomePage extends React.Component {
 	};
 
 	render() {
-		const { isLoggedIn } = this.props;
+		const { isLoggedIn, classes } = this.props;
 		return [
-			<SearchForm onChange={this.onSearchChange} search={this.onSearch} />,
+			<div className={classes.parent} >
+				<SearchForm onChange={this.onSearchChange} search={this.onSearch} />
+			</div>,
 			<Button href="/login" disabled={isLoggedIn}>
 				Loguearse
 			</Button>,
