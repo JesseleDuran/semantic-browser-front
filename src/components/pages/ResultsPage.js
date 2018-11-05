@@ -32,16 +32,37 @@ class ResultsPage extends Component {
 	}
 
 	render = () => {
-		const { query, results, search, onChange, tab, onTabChange, isLoggedIn } = this.props;
-		console.log(results)
+		const {
+			query,
+			results,
+			search,
+			onChange,
+			tab,
+			onTabChange,
+			isLoggedIn,
+			like
+		} = this.props;
+		console.log(results);
 		return (
 			<div>
 				<PrincipalAppBar />,
 				<SearchFormResults onChange={onChange} search={search} value={query} />
 				<NavTab value={tab} onChange={onTabChange} />
 				<ViewPager page={tab}>
-					{results && <ResultList items={results.items} isLoggedIn={isLoggedIn} />}
-					{results &&<ResultListImage items={results.items} isLoggedIn={isLoggedIn}/> }
+					{results && (
+						<ResultList
+							items={results.items}
+							isLoggedIn={isLoggedIn}
+							like={like}
+						/>
+					)}
+					{results && (
+						<ResultListImage
+							items={results.items}
+							isLoggedIn={isLoggedIn}
+							like={like}
+						/>
+					)}
 				</ViewPager>
 				<Pagination
 					items={this.state.exampleItems}

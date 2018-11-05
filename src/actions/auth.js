@@ -1,5 +1,6 @@
 import * as constants from "./constants";
 import Auth0 from "../services/auth0";
+import { loadFavs } from "./fav";
 
 export const login = () => dispatch => {
 	const auth0 = new Auth0();
@@ -38,6 +39,7 @@ export const setAuth = ({
 };
 
 const loginSuccess = payload => dispatch => {
+	dispatch(loadFavs(payload.user.sub));
 	dispatch({
 		type: constants.LOGIN_SUCCESS,
 		payload
