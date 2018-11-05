@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const addLike = ({ data }) => {
 	const form = new FormData();
 	form.append("link", data.link);
@@ -8,11 +7,22 @@ export const addLike = ({ data }) => {
 		method: "post",
 		url: "https://46976b51.ngrok.io/api/v1/favs",
 		data: form,
-		config: { headers: { "Content-Type": "multipart/form-data" } }
+
+		config: {
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "multipart/form-data"
+			}
+		}
 	}).then(res => res.data);
 };
 
-export const removeLike = likeId => {};
+export const removeLike = likeId => {
+	return axios({
+		method: "delete",
+		url: "https://46976b51.ngrok.io/api/v1/favs/" + likeId
+	}).then(res => res.data);
+};
 
 export const getLikes = userId => {
 	return axios({
@@ -21,5 +31,7 @@ export const getLikes = userId => {
 		params: {
 			["id-user"]: userId
 		}
-	}).then(res => res.data);
+	}).then(res => {
+		return res.data;
+	});
 };

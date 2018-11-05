@@ -8,7 +8,16 @@ import IconButton from "@material-ui/core/IconButton";
 
 class ResultItem extends Component {
 	render = () => {
-		const { title, link, snippet, isFav, isLoggedIn, like } = this.props;
+		const {
+			title,
+			link,
+			id,
+			snippet,
+			isFav,
+			isLoggedIn,
+			like,
+			unlike
+		} = this.props;
 		return (
 			<Grid
 				container
@@ -19,8 +28,11 @@ class ResultItem extends Component {
 				<div>
 					<TitleLink link={link} title={title} />
 					{isLoggedIn ? (
-						<IconButton color="inherit" onClick={() => like(link)}>
-							<Favorite color="disabled" />
+						<IconButton
+							color="inherit"
+							onClick={() => (isFav ? unlike(id) : like(link))}
+						>
+							<Favorite color={isFav ? "action" : "disabled"} />
 						</IconButton>
 					) : null}
 				</div>

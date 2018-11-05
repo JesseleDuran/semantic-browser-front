@@ -40,7 +40,8 @@ class ResultsPage extends Component {
 			tab,
 			onTabChange,
 			isLoggedIn,
-			like
+			like,
+			unlike
 		} = this.props;
 		console.log(results);
 		return (
@@ -54,6 +55,7 @@ class ResultsPage extends Component {
 							items={results.items}
 							isLoggedIn={isLoggedIn}
 							like={like}
+							unlike={unlike}
 						/>
 					)}
 					{results && (
@@ -61,6 +63,7 @@ class ResultsPage extends Component {
 							items={results.items}
 							isLoggedIn={isLoggedIn}
 							like={like}
+							unlike={unlike}
 						/>
 					)}
 				</ViewPager>

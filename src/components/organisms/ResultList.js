@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import ResultItem from "../molecules/ResultItem";
 
 class ResultList extends Component {
-	listItemsResult(items, like) {
+	listItemsResult(items, like, unlike) {
 		return items.map((i, ind) => (
 			<ResultItem
+				id={i.id}
 				key={ind}
 				title={i.title}
 				link={i.link}
+				isFav={i.isFav}
 				like={like}
+				unlike={unlike}
 				snippet={i.snippet}
 				isLoggedIn={this.props.isLoggedIn}
 			/>
@@ -16,8 +19,8 @@ class ResultList extends Component {
 	}
 
 	render = () => {
-		const { items, like } = this.props;
-		return <div>{this.listItemsResult(items, like)}</div>;
+		const { items, like, unlike } = this.props;
+		return <div>{this.listItemsResult(items, like, unlike)}</div>;
 	};
 }
 

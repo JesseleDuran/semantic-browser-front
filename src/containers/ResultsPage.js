@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import ResultsPage from "../components/pages/ResultsPage";
 import { withRouter } from "react-router-dom";
 import { search } from "../api/googleAPI";
-import { addLike } from "../api/favs";
+import { addLike, removeLike } from "../api/favs";
 import { replaceAll } from "../utils/functions";
+import { addFav, removeFav } from "../actions/fav";
+import sortBy from "lodash/sortBy";
+import isEqual from "lodash/isEqual";
 
 const typeMap = {
 	0: null,
@@ -123,6 +126,10 @@ class ResultsPageContainer extends Component {
 		tab: 0
 	};
 
+	componentWillReceiveProps = props => {
+		if (!isEqual(props.favs, this.props.favs)) this.sortedFavs(props.favs);
+	};
+
 	getQuery = paramString => {
 		const params = new URLSearchParams(paramString);
 		return params.get("query");
@@ -156,15 +163,45 @@ class ResultsPageContainer extends Component {
 			.catch(err => {
 				console.log("HEY", err);
 			});*/
-		this.setState({ results: data });
+		this.setState({ results: data }, () => this.sortedFavs(this.props.favs));
+	};
+
+	findFav = i => {
+		return f =>
+			f.link === i.link || (i.image && f.link === i.image.contextLink);
+	};
+
+	sortedFavs = favs => {
+		const {
+			results: { items },
+			results
+		} = this.state;
+		const sorted = sortBy(items, i => {
+			const fav = favs.find(this.findFav(i));
+			return fav ? fav.id : 9999999;
+		}).map(i => {
+			const fav = favs.find(this.findFav(i));
+			return fav
+				? { ...i, isFav: true, id: fav.id }
+				: { ...i, isFav: false, id: false };
+		});
+		this.setState({ results: { ...results, items: sorted } });
 	};
 
 	like = data => {
-		const { user } = this.props;
-		console.log("USER", data, user);
-		addLike({ data: { link: data, ["id-user"]: user.sub } })
-			.then(data => this.props.addLike(data))
-			.catch(err => {});
+		const { user, favs } = this.props;
+		addLike({ data: { link: data, ["id-user"]: user.sub } }).then(fav => {
+			this.props.addFav({
+				id: fav.ID,
+				link: data,
+				["id-user"]: user.sub
+			});
+		});
+	};
+
+	unlike = id => {
+		const { favs } = this.props;
+		removeLike(id).then(() => this.props.removeFav(id));
 	};
 
 	componentWillMount() {
@@ -188,6 +225,7 @@ class ResultsPageContainer extends Component {
 				tab={tab}
 				query={query}
 				like={this.like}
+				unlike={this.unlike}
 				search={this.search}
 				results={results}
 				onChange={this.onQueryChange}
@@ -198,9 +236,13 @@ class ResultsPageContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+	favs: state.fav,
 	user: state.auth.user,
 	error: state.UI.homePage.error,
 	isLoggedIn: state.auth.isLoggedIn
 });
 
-export default connect(mapStateToProps)(withRouter(ResultsPageContainer));
+export default connect(
+	mapStateToProps,
+	{ addFav, removeFav }
+)(withRouter(ResultsPageContainer));

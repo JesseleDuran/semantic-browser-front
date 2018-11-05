@@ -27,8 +27,11 @@ class ResultItemImage extends Component {
 			thumbnailLink,
 			title,
 			contextLink,
+			id,
 			isLoggedIn,
-			like
+			like,
+			isFav,
+			unlike
 		} = this.props;
 		return (
 			<Card className={classes.card}>
@@ -50,8 +53,11 @@ class ResultItemImage extends Component {
 						Visitar
 					</Button>
 					{isLoggedIn ? (
-						<Button size="small" onClick={() => link(contextLink)}>
-							<Favorite color="disabled" />
+						<Button
+							size="small"
+							onClick={() => (isFav ? unlike(id) : like(contextLink))}
+						>
+							<Favorite color={isFav ? "action" : "disabled"} />
 						</Button>
 					) : null}
 				</CardActions>
