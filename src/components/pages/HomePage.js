@@ -45,20 +45,14 @@ class HomePage extends React.Component {
 	render() {
 		const { isLoggedIn, classes } = this.props;
 		return [
-			<PrincipalAppBar />,
+			<PrincipalAppBar isLoggedIn={isLoggedIn} />,
 			<div className={classes.parent}>
 				<SearchForm
 					onChange={this.onSearchChange}
 					search={this.onSearch}
 					onLucky={this.onLucky}
 				/>
-			</div>,
-			<Button href="/login" disabled={isLoggedIn}>
-				Loguearse
-			</Button>,
-			<Button href="/logout" disabled={!isLoggedIn}>
-				Logout
-			</Button>
+			</div>
 		];
 	}
 }
