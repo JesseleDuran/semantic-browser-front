@@ -48,6 +48,7 @@ class HomePage extends React.Component {
 			<PrincipalAppBar isLoggedIn={isLoggedIn} />,
 			<div className={classes.parent}>
 				<SearchForm
+					query={this.state.query}
 					onChange={this.onSearchChange}
 					search={this.onSearch}
 					onLucky={this.onLucky}

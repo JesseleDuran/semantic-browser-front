@@ -20,7 +20,7 @@ class ResultsPage extends Component {
 			onTabChange,
 			isLoggedIn,
 			like,
-			changePage,
+			onChangePage,
 			page,
 			unlike
 		} = this.props;
@@ -53,7 +53,7 @@ class ResultsPage extends Component {
 						<Pagination
 							items={results.queries.request[0].totalResults / 10}
 							activePage={page}
-							onSelect={changePage}
+							onSelect={onChangePage}
 							maxButtons={8}
 						/>
 					)}
