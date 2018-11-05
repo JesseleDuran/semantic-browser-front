@@ -4,8 +4,13 @@ import { Provider } from "react-redux";
 import registerServiceWorker from "./registerServiceWorker";
 import App from "./containers/App";
 import store from "./store";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { injectGlobal } from "styled-components";
 
+injectGlobal`
+  	button:focus {
+    	background: none !important;
+	}
+`;
 render(
 	<Provider store={store}>
 		<App />
