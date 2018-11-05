@@ -54,18 +54,8 @@ class ResultsPageContainer extends Component {
 			});*/
 	};
 
-	like = () => {
-		/*const { query, searchType } = this.state;
-		search({
-			q: this.formatQueryIfNeeded(query),
-			searchType
-		})
-			.then(results => {
-				this.setState({ results });
-			})
-			.catch(err => {
-				console.log("HEY", err);
-			});*/
+	like = (data) => {
+		
 	};
 
 	componentWillMount() {

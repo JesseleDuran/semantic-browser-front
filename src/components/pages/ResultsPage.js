@@ -41,8 +41,7 @@ class ResultsPage extends Component {
 				<NavTab value={tab} onChange={onTabChange} />
 				<ViewPager page={tab}>
 					{results && <ResultList items={results.items} isLoggedIn={isLoggedIn} />}
-					{/* <ResultListImage items={data.items} isLoggedIn={isLoggedIn}/> */}
-					<h1>VIDEOS</h1>
+					{results &&<ResultListImage items={results.items} isLoggedIn={isLoggedIn}/> }
 				</ViewPager>
 				<Pagination
 					items={this.state.exampleItems}

@@ -76,12 +76,6 @@ class NavTab extends React.Component {
 						label="Imágenes"
 						value={1}
 					/>
-					<Tab
-						disableRipple
-						classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-						label="Videos"
-						value={2}
-					/>
 				</Tabs>
 			</div>
 		);
