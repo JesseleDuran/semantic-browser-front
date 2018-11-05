@@ -44,7 +44,7 @@ class SearchFormResults extends Component {
 						<SearchInput
 							justify="flex-start"
 							onChange={onChange}
-							onEnter={search}
+							onEnter={(value.length >= 1) ? search : null}
 							value={value}
 						/>
 					</Grid>

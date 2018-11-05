@@ -153,19 +153,21 @@ class ResultsPageContainer extends Component {
 
 	onSearch = feelingLucky => {
 		const { query, searchType, page } = this.state;
-		search({
-			q: this.formatQueryIfNeeded(query),
-			searchType,
-			start: page
-		})
-			.then(results => {
-				if (feelingLucky) this.goToFirstPage(results.items);
-				this.setState({ results });
+		if(query.length >= 1) {
+			search({
+				q: this.formatQueryIfNeeded(query),
+				searchType,
+				start: page
 			})
-			.catch(err => {
-				console.log("HEY", err);
-			});
-		this.setState({ results: data }, () => this.sortedFavs(this.props.favs));
+				.then(results => {
+					if (feelingLucky) this.goToFirstPage(results.items);
+					this.setState({ results });
+				})
+				.catch(err => {
+					console.log("HEY", err);
+				});
+			this.setState({ results: data }, () => this.sortedFavs(this.props.favs));
+		}
 	};
 
 	findFav = i => {

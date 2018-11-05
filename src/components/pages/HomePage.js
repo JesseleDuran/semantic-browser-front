@@ -25,11 +25,13 @@ class HomePage extends React.Component {
 
 	onSearch = () => {
 		const { query } = this.state;
-		this.props.history.push({
-			pathname: "/search",
-			search: `query=${query}`,
-			query
-		});
+		if(query.length >= 1) {
+			this.props.history.push({
+				pathname: "/search",
+				search: `query=${query}`,
+				query
+			});
+		}
 	};
 
 	onLucky = () => {
