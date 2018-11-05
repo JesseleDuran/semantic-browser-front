@@ -28,26 +28,28 @@ class ResultsPage extends Component {
 		return (
 			<div>
 				<PrincipalAppBar isLoggedIn={isLoggedIn} />,
-				<SearchFormResults onChange={onChange} search={search} value={query} />
-				<NavTab value={tab} onChange={onTabChange} />
-				<ViewPager page={tab}>
-					{results && (
-						<ResultList
-							items={results.items}
-							isLoggedIn={isLoggedIn}
-							like={like}
-							unlike={unlike}
-						/>
-					)}
-					{results && (
-						<ResultListImage
-							items={results.items}
-							isLoggedIn={isLoggedIn}
-							like={like}
-							unlike={unlike}
-						/>
-					)}
-				</ViewPager>
+				<div style={{paddingLeft: "15px"}} >
+					<SearchFormResults onChange={onChange} search={search} value={query} />
+					<NavTab value={tab} onChange={onTabChange} />
+					<ViewPager page={tab}>
+						{results && (
+							<ResultList
+								items={results.items}
+								isLoggedIn={isLoggedIn}
+								like={like}
+								unlike={unlike}
+							/>
+						)}
+						{results && (
+							<ResultListImage
+								items={results.items}
+								isLoggedIn={isLoggedIn}
+								like={like}
+								unlike={unlike}
+							/>
+						)}
+					</ViewPager>
+				</div>
 				<Grid container justify="center">
 					{results && (
 						<Pagination
