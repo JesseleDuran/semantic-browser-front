@@ -10,6 +10,7 @@ class ResultList extends Component {
                 title={i.title}
                 link={i.link}
                 snippet={i.snippet}
+                isLoggedIn={this.props.isLoggedIn}
             >
             </ResultItem>
         ))

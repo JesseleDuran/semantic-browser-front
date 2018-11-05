@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const search = ({ data }) => {
+export const addLike = ({ data }) => {
 	return axios({
             method: 'post',
             url: 'http://localhost:8080/api/v1/favs',

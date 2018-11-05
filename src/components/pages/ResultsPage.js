@@ -32,7 +32,7 @@ class ResultsPage extends Component {
 	}
 
 	render = () => {
-		const { query, results, search, onChange, tab, onTabChange } = this.props;
+		const { query, results, search, onChange, tab, onTabChange, isLoggedIn } = this.props;
 		console.log(results)
 		return (
 			<div>
@@ -40,8 +40,8 @@ class ResultsPage extends Component {
 				<SearchFormResults onChange={onChange} search={search} value={query} />
 				<NavTab value={tab} onChange={onTabChange} />
 				<ViewPager page={tab}>
-					{results && <ResultList items={results.items} />}
-					{/* <ResultListImage items={data.items}/> */}
+					{results && <ResultList items={results.items} isLoggedIn={isLoggedIn} />}
+					{/* <ResultListImage items={data.items} isLoggedIn={isLoggedIn}/> */}
 					<h1>VIDEOS</h1>
 				</ViewPager>
 				<Pagination

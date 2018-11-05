@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 class ResultItem extends Component {
 
 	render = () => {
-        const { title, link, snippet, isFav } = this.props;
+        const { title, link, snippet, isFav, isLoggedIn} = this.props;
 		return (
 			<Grid container
 				direction="column"
@@ -17,9 +17,11 @@ class ResultItem extends Component {
 				alignItems="flex-start"
 			>
 				<div><TitleLink link={link} title={title}></TitleLink>
-					<IconButton color="inherit">
-						<Favorite color="disabled" />
-					</IconButton>
+				 	{(isLoggedIn) ? (
+						<IconButton color="inherit">
+							<Favorite color="disabled" />
+						</IconButton>
+						) : (null)}
 				</div>
                 <ResultLink link={link}></ResultLink>
                 <ResultSnippet>{snippet}</ResultSnippet>

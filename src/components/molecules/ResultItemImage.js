@@ -22,7 +22,7 @@ const styles = {
 class ResultItemImage extends Component {
 
     render = () => {
-        const { classes, thumbnailLink, title, contextLink } = this.props;
+        const { classes, thumbnailLink, title, contextLink, isLoggedIn } = this.props;
         return (
             <Card className={classes.card}>
                 <div>
@@ -44,9 +44,11 @@ class ResultItemImage extends Component {
                     <Button size="small" color="primary" href={contextLink}>
                         Visitar
                     </Button>
-                    <Button size="small">
-                        <Favorite color="disabled" />
-                    </Button>
+                    {(isLoggedIn) ? (
+						<Button size="small">
+                            <Favorite color="disabled" />
+                        </Button>
+						) : (null)}
                 </CardActions>
             </Card>
         );

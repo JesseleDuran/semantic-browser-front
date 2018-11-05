@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ResultsPage from "../components/pages/ResultsPage";
 import { withRouter } from "react-router-dom";
 import { search } from "../api/googleAPI";
+import { addLike } from "../api/favs";
 import { replaceAll } from "../utils/functions";
 
 const typeMap = {
@@ -53,6 +54,20 @@ class ResultsPageContainer extends Component {
 			});*/
 	};
 
+	like = () => {
+		/*const { query, searchType } = this.state;
+		search({
+			q: this.formatQueryIfNeeded(query),
+			searchType
+		})
+			.then(results => {
+				this.setState({ results });
+			})
+			.catch(err => {
+				console.log("HEY", err);
+			});*/
+	};
+
 	componentWillMount() {
 		let {
 			location: { query, feelingLucky },
@@ -76,6 +91,7 @@ class ResultsPageContainer extends Component {
 				search={this.search}
 				results={results}
 				onChange={this.onQueryChange}
+				isLoggedIn={this.props.isLoggedIn}
 			/>
 		);
 	};
@@ -83,7 +99,8 @@ class ResultsPageContainer extends Component {
 
 const mapStateToProps = state => ({
 	loading: state.UI.homePage.loading,
-	error: state.UI.homePage.error
+	error: state.UI.homePage.error,
+	isLoggedIn: state.auth.isLoggedIn,
 });
 
 export default connect(mapStateToProps)(withRouter(ResultsPageContainer));

@@ -12,6 +12,7 @@ class ResultListImage extends Component {
                     thumbnailLink={i.image.thumbnailLink}
                     title={i.title}
                     contextLink={i.image.contextLink}
+                    isLoggedIn={this.props.isLoggedIn}
                 >
                 </ResultItemImage>
             </Grid>
