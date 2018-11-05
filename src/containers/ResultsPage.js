@@ -161,11 +161,12 @@ class ResultsPageContainer extends Component {
 			})
 				.then(results => {
 					if (feelingLucky) this.goToFirstPage(results.items);
-					this.setState({ results });
+					this.setState({ results }, () => this.sortedFavs(this.props.favs));
 				})
 				.catch(err => {
 					console.log("HEY", err);
 				});
+
 			this.setState({ results: data }, () => this.sortedFavs(this.props.favs));
 		}
 	};
