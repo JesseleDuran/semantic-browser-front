@@ -100,18 +100,16 @@ class PrincipalAppBar extends React.Component {
 				open={isMobileMenuOpen}
 				onClose={this.handleMobileMenuClose}
 			>
-				<MenuItem>
-					<IconButton color="inherit">
-						<Favorite />
-					</IconButton>
-					<p>Favoritos</p>
-				</MenuItem>
-				<MenuItem onClick={this.handleProfileMenuOpen}>
-					<IconButton color="inherit">
-						<AccountCircle />
-					</IconButton>
-					<p>Profile</p>
-				</MenuItem>
+				{!isLoggedIn && (
+					<MenuItem onClick={() => this.props.history.push("/login")}>
+						Iniciar sesión
+					</MenuItem>
+				)}
+				{isLoggedIn && (
+					<MenuItem onClick={() => this.props.history.push("/logout")}>
+						Cerrar sesión
+					</MenuItem>
+				)}
 			</Menu>
 		);
 
