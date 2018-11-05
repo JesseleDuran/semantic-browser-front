@@ -3,7 +3,7 @@ import React from "react";
 
 const Link = styled.a`
     color: #1a0dab;
-    font-size: ${props => props.size};
+    font-size: medium;
 `;
 
 const TitleLink = ({ link, title }) => {
