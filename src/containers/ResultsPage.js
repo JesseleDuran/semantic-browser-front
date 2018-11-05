@@ -123,7 +123,8 @@ class ResultsPageContainer extends Component {
 		query: "",
 		searchType: null,
 		results: null,
-		tab: 0
+		tab: 0,
+		page: 1
 	};
 
 	componentWillReceiveProps = props => {
@@ -151,10 +152,11 @@ class ResultsPageContainer extends Component {
 	};
 
 	onSearch = feelingLucky => {
-		const { query, searchType } = this.state;
-		/*search({
+		const { query, searchType, page } = this.state;
+		search({
 			q: this.formatQueryIfNeeded(query),
-			searchType
+			searchType,
+			start: page
 		})
 			.then(results => {
 				if (feelingLucky) this.goToFirstPage(results.items);
@@ -162,7 +164,7 @@ class ResultsPageContainer extends Component {
 			})
 			.catch(err => {
 				console.log("HEY", err);
-			});*/
+			});
 		this.setState({ results: data }, () => this.sortedFavs(this.props.favs));
 	};
 
@@ -217,8 +219,12 @@ class ResultsPageContainer extends Component {
 		this.setState({ tab, searchType: typeMap[tab] }, this.onSearch);
 	};
 
+	onChangePage = page => {
+		this.setState({ page }, this.onSearch);
+	};
+
 	render = () => {
-		const { query, results, tab } = this.state;
+		const { query, results, tab, page } = this.state;
 		return (
 			<ResultsPage
 				onTabChange={this.tabChange}
@@ -228,7 +234,9 @@ class ResultsPageContainer extends Component {
 				unlike={this.unlike}
 				search={this.search}
 				results={results}
+				page={page}
 				onChange={this.onQueryChange}
+				onChangePage={this.onChangePage}
 				isLoggedIn={this.props.isLoggedIn}
 			/>
 		);

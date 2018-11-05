@@ -5,12 +5,11 @@ import PrincipalAppBar from "../molecules/PrincipalAppBar";
 import ResultList from "../organisms/ResultList";
 import ResultListImage from "../organisms/ResultListImage";
 import NavTab from "../molecules/NavTab";
-import { Pagination } from 'react-materialize'
+import { Pagination } from "react-materialize";
 import SearchFormResults from "../organisms/SearchFormResults";
 import ViewPager from "../molecules/ViewPager";
 
 class ResultsPage extends Component {
-
 	render = () => {
 		const {
 			query,
@@ -21,6 +20,8 @@ class ResultsPage extends Component {
 			onTabChange,
 			isLoggedIn,
 			like,
+			changePage,
+			page,
 			unlike
 		} = this.props;
 		console.log(results);
@@ -48,7 +49,14 @@ class ResultsPage extends Component {
 					)}
 				</ViewPager>
 				<Grid container justify="center">
-					{results && (<Pagination items={(results.queries.request[0].totalResults/10)} activePage={results.queries.request[0].startIndex} maxButtons={8} />)}
+					{results && (
+						<Pagination
+							items={results.queries.request[0].totalResults / 10}
+							activePage={page}
+							onSelect={changePage}
+							maxButtons={8}
+						/>
+					)}
 				</Grid>
 			</div>
 		);
