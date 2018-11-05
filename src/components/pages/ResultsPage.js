@@ -31,15 +31,19 @@ class ResultsPage extends Component {
 				<div style={{paddingLeft: "15px"}} >
 					<SearchFormResults onChange={onChange} search={search} value={query} />
 					<NavTab value={tab} onChange={onTabChange} />
+					
 					<ViewPager page={tab}>
-						{results && (
+						{results && [
+							<div style={{color: "gray", fontSize: "small"}}>
+								<p>Cerca de {results.searchInformation.formattedTotalResults} resultados ({results.searchInformation.formattedSearchTime} segundos)</p>
+							</div>,
 							<ResultList
 								items={results.items}
 								isLoggedIn={isLoggedIn}
 								like={like}
 								unlike={unlike}
 							/>
-						)}
+						]}
 						{results && (
 							<ResultListImage
 								items={results.items}
