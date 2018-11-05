@@ -5,31 +5,11 @@ import PrincipalAppBar from "../molecules/PrincipalAppBar";
 import ResultList from "../organisms/ResultList";
 import ResultListImage from "../organisms/ResultListImage";
 import NavTab from "../molecules/NavTab";
-import Pagination from "../organisms/Pagination";
+import { Pagination } from 'react-materialize'
 import SearchFormResults from "../organisms/SearchFormResults";
 import ViewPager from "../molecules/ViewPager";
 
 class ResultsPage extends Component {
-	constructor() {
-		super();
-
-		// an example array of items to be paged
-		var exampleItems = [...Array(150).keys()].map(i => ({
-			id: i + 1,
-			name: "Item " + (i + 1)
-		}));
-
-		this.state = {
-			exampleItems: exampleItems,
-			pageOfItems: []
-		};
-
-		this.onChangePage = this.onChangePage.bind(this);
-	}
-
-	onChangePage(pageOfItems) {
-		this.setState({ pageOfItems: pageOfItems });
-	}
 
 	render = () => {
 		const {
@@ -46,7 +26,7 @@ class ResultsPage extends Component {
 		console.log(results);
 		return (
 			<div>
-				<PrincipalAppBar />,
+				<PrincipalAppBar isLoggedIn={isLoggedIn} />,
 				<SearchFormResults onChange={onChange} search={search} value={query} />
 				<NavTab value={tab} onChange={onTabChange} />
 				<ViewPager page={tab}>
@@ -67,10 +47,9 @@ class ResultsPage extends Component {
 						/>
 					)}
 				</ViewPager>
-				<Pagination
-					items={this.state.exampleItems}
-					onChangePage={this.onChangePage}
-				/>
+				<Grid container justify="center">
+					{results && (<Pagination items={(results.queries.request[0].totalResults/10)} activePage={results.queries.request[0].startIndex} maxButtons={8} />)}
+				</Grid>
 			</div>
 		);
 	};
